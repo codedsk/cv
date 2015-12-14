@@ -1,0 +1,946 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\RequirePackage[T1]{fontenc}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+\usepackage{times}
+\renewcommand{\familydefault}{\sfdefault}
+
+% The OCR software also has a hard time with italics. These commands get
+% rid of the two common ways to italicize text in LaTeX. Get rid of them
+% to turn italics back on.
+\renewcommand\emph[1]{#1}
+\renewcommand\textit[1]{\underline{\smash{#1}}}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+
+% This package helps LaTeX auto-hyphenate hyphenated words if you use
+% special hyphens. For example, bio\-/mimicry will properly hyphenate
+% ``mimicry'' if necessary.
+\usepackage[shortcuts]{extdash}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.2in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+% Provides special list environments and macros to create new ones
+\usepackage[shortlabels]{enumitem}
+
+% Simpler bibsections for CV sections
+% (thanks to natbib for inspiration)
+%
+% * For lists of references with hanging indents and no numbers:
+%
+%   \begin{bibsection}
+%       \item ...
+%   \end{bibsection}
+%
+% * For numbered lists of references (with hanging indents):
+%
+%   \begin{bibenum}
+%       \item ...
+%   \end{bibenum}
+%
+%   Note that bibenum numbers continuously throughout. To reset the
+%   counter, use
+%
+%   \restartlist{bibenum}
+%
+%   at the place where you want the numbering to reset.
+
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newlist{bibsection}{itemize}{3}
+\setlist[bibsection]{label=,leftmargin=\bibhang,%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\newlist{bibenum}{enumerate}{3}
+\setlist[bibenum]{label=[\arabic*],resume,leftmargin={\bibhang+\widthof{[999]}},%
+        itemindent=-\bibhang,
+        itemsep=\bibsep,parsep=\z@,partopsep=0pt,
+        topsep=0pt}
+\let\oldendbibenum\endbibenum
+\def\endbibenum{\oldendbibenum\vspace{-.6\baselineskip}}
+\let\oldendbibsection\endbibsection
+\def\endbibsection{\oldendbibsection\vspace{-.6\baselineskip}}
+\makeatother
+
+%%% Setup header and footer (with page number and possible last page)
+%
+% The first block sets up pages 2--end
+% The second block sets up page 1 formatting
+%
+%%%
+%
+% NOTE: comment the +LP lines and uncomment the -LP lines to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers on pages 2--end. To get rid of page numbers on page 1,
+%       comment out the \thispagestyle{plain} line on the first page
+%       below.
+%       (also make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+
+%%%% PAGES 2--9 NUMBERING:
+%% These two lines put page number in upper-right corner of pages 2--end
+\rhead{Kearney, p.~\arabic{page} of \protect\pageref*{LastPage}}   % +LP
+%\rhead{Pavlic, p.~\arabic{page}}                                 % -LP
+
+%% These lines put page number in bottom (center) of pages 2--end
+%\lfoot{\hspace{\footpageshift}%
+%       \parbox{4in}{\, \hfill %
+%                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%%                    \arabic{page}                               % -LP
+%                    \hfill \,}}
+%%%% END PAGE 2--9 NUMBERING
+
+%%%% PAGE 1 NUMBERING:
+\makeatletter
+\let\oldps@plain\ps@plain
+\renewcommand{\ps@plain}{\oldps@plain%
+\renewcommand{\@evenfoot}{\hspace*{-\footpageshift}\hfil %
+    p.~\arabic{page} of \protect\pageref*{LastPage} % +LP
+%    p.~\arabic{page}                               % -LP
+    \hfil}%
+\renewcommand{\@oddfoot}{\@evenfoot}}
+\makeatother
+%%%% END PAGE 1 NUMBERING
+
+% Finally, give us PDF bookmarks and colored links
+%
+% NOTE: Some OCR software might be negatively affected by hyperlinks. So
+%       most employers recommend the draft option here. Alternatively,
+%       making all links black (as opposed to darkblue) should hopefully
+%       prevent problems with most OCR.
+%
+% (to enable hyperlinks and bookmarks, comment out ``draft'' line;
+%  to disable hyperlinks and bookmarks, uncomment ``draft'' line)
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+\hypersetup{breaklinks,colorlinks,
+            linkcolor=black,urlcolor=black,
+            anchorcolor=black,citecolor=black,
+            %linkcolor=darkblue,urlcolor=darkblue,
+            %anchorcolor=darkblue,citecolor=darkblue,
+            %draft
+            }
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[{\includegraphics[height=1.5in]{my_picture}}]{Your Name}
+%
+% the picture will be flush right across from the name. For this example
+% to work, make sure the extra set of curly braces is included. Also
+% makes ure that \usepackage{graphicx} is somewhere in the preamble.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\hyphenpenalty=10000\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\def\item{\pagebreak[2]\oldItem}\csname preFixOuterList#1\endcsname}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\textbullet,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \setlist[lonelist]{label=\enskip\textbullet,leftmargin=*,partopsep=0pt,topsep=0pt}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{3}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Provides a linked \doi{#1} that links doi:#1 to http://dx.doi.org/#1
+\usepackage{doi}
+% To change the text before the DOI, adjust this command
+%\renewcommand\doitext{doi:}
+
+% Provides a linked \url{#1} that doesn't require escape characters
+\usepackage{url}
+
+% You can adjust the style \url{} uses here:
+% (options are: same, rm, sf, tt; defaults to tt)
+\urlstyle{same}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+% (uncomment to typeset the e\-/mail address in typewriter font;
+%  otherwise, will be typeset in the \urlstyle above)
+%\DeclareUrlCommand\emaillink{\urlstyle{tt}}
+\providecommand*\emaillink[1]{\nolinkurl{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\emaillink{#1}}}
+
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+% Custom hyphenation rules for words that LaTeX has trouble with
+\hyphenation{bio-mim-ic-ry bio-in-spi-ra-tion re-us-a-ble pro-vid-er Media-Wiki}
+
+% Provides the \nth{3} command so we can write numbers with superscripts
+\usepackage[super]{nth}
+
+\usepackage{relsize}
+\newcommand\CC{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
+\newcommand\SVN{Subversion}
+\newcommand\INCRTCLTK{[incr\space\nolinebreak Tcl/Tk]}
+\newcommand\HUBZERO{\href{https://hubzero.org}{HUBzero}}
+\newcommand\HUBZEROPLATFORM{\href{https://hubzero.org}{HUBzero Platform for Scientific Collaboration}}
+\newcommand\RAPPTURE{\href{http://rappture.org}{Rappture Toolkit}}
+\newcommand\NCN{\href{https://nanohub.org/groups/ncn}{Network for Computational Nanotechnology}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{plain}
+\makeheading[\emph{Curriculum vitae}]{Derrick Kearney}
+
+\section{Contact Information}
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+%
+\begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
+
+% Address box
+\parbox{\textwidth-\rcollength-\spacewidth}{%
+%\href{http://www.hubzero.org/}{HUBzero}\\
+%\href{http://www.rcac.purdue.edu/}{Research Computing, Information Technology at Purdue (IT@P), Purdue University}\\
+IT@P Research Computing\\
+Purdue University\\
+155 South Grant St\\
+West Lafayette, Indiana 47907}
+
+&
+% Uncomment to add a vertical bar in middle of contact information
+%{\vrule width 0.5pt}
+\parbox[m][5\baselineskip]{\spacewidth}{} &
+
+% Non-snail-mail contact information
+\parbox{\rcollength}{%
+%\emph{Work:} +1-765-494-3659 \\
+\emph{E-mail:} \email{dsk@purdue.edu}\\
+\emph{WWW:} \href{https://github.com/codedsk}{github.com/codedsk}}
+
+\end{tabular}
+
+
+\section{Interests}
+    Experienced in Linux based scientific software development.
+    Interested in working with mobile operating systems and developing
+    C/\CC, Python, and Rust libraries, while evangelizing
+    about the benefits of software automation and open source technologies.
+
+\section{Availability}
+
+\begin{loneinnerlist}
+    \item Start time is negotiable; may be possible to start immediately
+    \item Geographic location is flexible, but there is preference
+        for Lafayette, Indiana or Chicago, Illinois
+\end{loneinnerlist}
+
+
+\section{Education}
+
+\href{http://www.purdue.edu/}{\textbf{Purdue University}},
+West Lafayette, IN
+\begin{outerlist}
+
+\item[] M.S.,
+        \href{https://engineering.purdue.edu/ECE}
+             {Electrical and Computer Engineering}, May 2015
+        \begin{innerlist}
+            \item Thesis Topic:
+                  \href{http://docs.lib.purdue.edu/dissertations/AAI1597870/}
+                       {\emph{Automated testing in multimodal systems}}
+            \item Adviser:
+                  \href{https://engineering.purdue.edu/~smidkiff/}
+                       {Professor Samuel P. Midkiff}
+            \item Area of Study: Computer Engineering / Software Systems
+        \end{innerlist}
+
+\item[] B.S.,
+        \href{https://engineering.purdue.edu/ECE}
+             {Electrical and Computer Engineering}, Dec 2003
+        \begin{innerlist}
+            \item Computer Engineering specialization (emphasis on software systems)
+            \item Minor in \href{http://www.purdue.edu/hhs/psy/} {Psychology}
+        \end{innerlist}
+
+\end{outerlist}
+
+\section{Professional Experience}
+
+\href{http://www.purdue.edu/}{\textbf{Purdue University}},
+West Lafayette, IN
+\begin{outerlist}
+
+    \item[] \textit{Software Engineer}%
+            \hfill \textbf{February 2005 to present}
+    \item[] HUBzero\textsuperscript{\textregistered} Platform for Scientific Collaboration \\
+        \url{https://hubzero.org}
+
+        \begin{innerlist}
+
+            \item Developer for the
+                \href{http://rappture.org}{Rappture Toolkit}, a software
+                library designed to help scientists rapidly assemble and
+                deploy graphical user interfaces for their simulation codes.
+                Contributed to several of the (incr)Tcl/Tk widgets and built
+                languange bindings for C, \CC, FORTRAN, \Matlab, Octave,
+                Perl, Python, and R. \\
+                \url{http://rappture.org}
+
+            \item Creator and maintainer of HUBcheck,
+                a Python library used to build automation scripts
+                and user level tests for HUBzero based websites and
+                workspace environments. Currently being used by the HUBzero
+                team to help perform automated nightly testing and
+                software builds. \\
+                \url{https://github.com/codedsk/hubcheck}
+
+            \item Integrating Geospacial Analysis Building Blocks, GABBS,
+                into the Rappture Toolkit and HUBzero Platform. Collaborating
+                with a team of visualization and mapping experts
+                to build Rappture Toolkit widgets that allow scientists to
+                display, and end users to manipulate, large data sets through
+                interactive maps. \\
+                \url{https://mygeohub.org/groups/gabbs}
+
+            \item Scientific application development for various
+                research groups affiliated with Purdue University
+                and the Network for Computational Nanotechnology.
+                \hfill Recent applications include:
+                \begin{innerlist}
+                    \item[] SolarPV
+                        \begin{innerlist}
+                            \item[] Simulates electricity demand in residential
+                              communities with solar photovoltaic (PV) systems.
+                              The model takes into account the seasonal data for
+                              different regions of the United States, appliance
+                              profiles, and photovoltaic system profiles. It
+                              returns an hourly and daily analysis of the
+                              electric demand. Worked with a Chemical Engineering
+                              based team to adapt the original proprietary model
+                              to run on the HUBzero Platform, in an environment
+                              where students could easily create and upload their own
+                              data profiles for use by the model.
+                            \item[] Coded in Java, MySQL, Python, Bash
+                            \item[] \doi{10.4231/D3BV79W4T}
+                        \end{innerlist}
+                    \item[] ParticleVE
+                        \begin{innerlist}
+                            \item[] Track and estimate particle velocities
+                              using video from the 2010 Deepwater Horizon
+                              oil spill in the Gulf of Mexico. Worked with
+                              a microfluidics and particle image velocimetry
+                              expert to build this application, which uses
+                              video from the oil spill and algebra to
+                              assists users in estimating the amount of oil
+                              that was released into the Gulf after the
+                              drilling rig explosion.
+                            \item[] Coded in Tcl/Tk, C (libav/ffmpeg), HTML
+                            \item[] \doi{10.4231/D35D8NF30}
+                        \end{innerlist}
+                    \item[] NanoFET
+                        \begin{innerlist}
+                            \item[] Simulate ballistic transport in 2D MOSFET
+                              devices. This application simulates the effects
+                              of downscaling conventional CMOS devices,
+                              uncovering the challenges of working on the
+                              evershrinking nanoelectronics that run our
+                              devices these days. Worked with a small team of
+                              Electrical Engineering postdocs to parallelize
+                              the code using MPI, set it up to run on TeraGrid
+                              based supercomputing platforms, and deploy it
+                              on nanohub.org as a community software tool.
+                            \item[] Coded in FORTRAN
+                            \item[] \doi{10254/nanohub-r1090.5}
+                        \end{innerlist}
+                    %\item[] Quantum Point Contact
+                    %    \begin{innerlist}
+                    %        \item[] Simulates the conductance and associated wavefunctions of Quantum Point Contacts
+                    %        \item[] \url{http://nanohub.org/resources/qpc}
+                    %    \end{innerlist}
+                \end{innerlist}
+
+            \item Software development and maintenance of virtual
+                linux containers on HUBs managed by the HUBzero team,
+                supporting over 400,000 registered users and over a
+                million visitors per year, on sites like:
+                \begin{innerlist}
+                    \item[] \href{https://nanohub.org}{nanohub.org}
+                        - nanotechnology research
+                    \item[] \href{https://nees.org}{nees.org}
+                        - earthquake, geophysics research
+                    \item[] \href{https://pharmahub.org}{pharmahub.org}
+                        - pharmaceutical production
+                    \item[] \href{https://vhub.org}{vhub.org}
+                        - volcano research and risk mitigatioon
+                    \item[] \href{https://ccehub.org}{ccehub.org}
+                        - cancer care engineering
+                    \item[] \href{https://mygeohub.org}{mygeohub.org}
+                        - geospacial modeling and data analysis
+                \end{innerlist}
+
+            \item Software development adviser for students
+                participating in the Summer Undergraduate Research Fellowship
+                (SURF) program. Work with other faculty, staff and graduate
+                mentors to introduce students to nanotechnology research and
+                software development best practices. \\
+                \url{http://www.purdue.edu/surf}
+
+        \end{innerlist}
+\end{outerlist}
+
+\halfblankline
+
+\href{http://www.convergys.com/}{\textbf{Convergys Corporation}},
+Cincinnati, OH
+\begin{outerlist}
+
+    \item[] \textit{Associate Programmer / Analyst}%
+            \hfill \textbf{January 2004 to January 2005}\\
+            \textit{Intern}%
+            \hfill \textbf{May 2003 to August 2003}\\
+            \textit{Intern}%
+            \hfill \textbf{December 2002 to January 2003}\\
+            \textit{Intern}%
+            \hfill \textbf{May 2002 to August 2002}\\
+            \begin{innerlist}
+                \item Provided application support for Mediation Manager,
+                    the company's flagship mobile phone billing and rating
+                    software.
+
+                \item Custom software design and development for Verizon
+                    Wireless including onsite consultation regarding
+                    system setup, testing, and operation.
+
+                \item Provided production support for Cincinnati Bell
+                    Wireless.
+            \end{innerlist}
+
+\end{outerlist}
+
+
+\section{Refereed Journal Publications}
+
+\begin{bibenum}
+
+    \item McLennan, M., Clark, S., Deelman, E., Rynge, M., Vahi, K.,
+          McKenna, F., Kearney, D., Song, C. (2015). HUBzero and Pegasus:
+          integrating scientific workflows into science gateways.
+          \emph{Concurrency and Computation: Practice and Experience},
+          27(2), 328-343.\\
+          \doi{10.1002/cpe.3257}
+
+    \item McLennan, M., Clark, S., Deelman, E., Rynge, M., Vahi, K.,
+          McKenna, F., Kearney, D., Song, C. (2013). Bringing scientific
+          workflow to the masses via pegasus and hubzero.
+          \emph{parameters}, 13, 14.
+
+    \item Ahmed, S., Klimeck, G., Kearney, D., McLennan, M., \& Anantram,
+          M. P. (2007). Quantum Simulations of Dual Gate MOSFET Devices:
+          Building and Deploying Community Nanotechnology Software Tools
+          on nanoHUB.org. \emph{International Journal of High Speed
+          Electronics and Systems}, 17(03), 485-494.\\
+          \doi{10.1142/S0129156407004679}
+
+\end{bibenum}
+
+\vspace{0.1in}
+
+\section{Conference Proceedings}
+
+\begin{bibenum}
+
+    \item GL Rochon, Carol Xiaohui Song, Lan Zhao, Dev Niyogi, Derrick S. Kearney and
+          Jie Shan. "Supporting Interdisciplinary e-Science through Real-Time Remote
+          Sensing \& High Performance Computing in a High Bandwidth Environment," 20th
+          International CODATA Conference. Scientific Data and Knowledge within the
+          Information Society. Oct. 23-25, 2006, Beijing, China.
+
+    \item GL Rochon, J. Paul Robinson, Carol Xiaohui Song, Lan Zhao, Dev Niyogi and
+          Derrick S. Kearney. "Remote and Proximal Sensing in Support of Disaster
+          Mitigation and Sustainable Development," Chinese Academy of Sciences, China
+          Remote Sensing Ground Station (RSGS), Beijing, China, Oct. 24, 2006.
+
+    \item GL Rochon, Mohamed A. Mohamed, Dev Niyogi, Melba M. Crawford, J. Paul
+          Robinson, Souleymane Fall, Joseph E. Quansah, Larry Biehl, Jie Shan, Carol
+          Xiaohui Song, Derrick S. Kearney, Lan Zhao and Amy Neuenschwander.
+          "Integration of Real-Time and Archival Remote Sensing with High Performance
+          Computing \& Dynamic Modeling to Support Disaster Mitigation." African
+          Association for Remote Sensing of Environment (AARSE), Cairo, Egypt, Oct. 30
+          - Nov. 2, 2006.
+
+    \item GL Rochon, Mohamed A. Mohamed, Dev Niyogi, Melba M. Crawford, J. Paul
+          Robinson, Souleymane Fall, Joseph E. Quansah, Larry Biehl, Jie Shan, Carol
+          Xiaohui Song, Derrick S. Kearney, Lan Zhao and Amy Neuenschwander. 'In Situ
+          Monitoring, Satellite Remote Sensing, Proximal Sensing \& High Performance
+          Computing to Facilitate Sustainability and Disaster Preparedness." Cairo
+          University, Aerospace Studies Department, Cairo, Egypt, Nov. 2, 2006.
+
+    \item GL Rochon, Mohamed A. Mohamed, Dev Niyogi, Melba M. Crawford, J. Paul
+          Robinson, Souleymane Fall, Joseph E. Quansah, Larry Biehl, Jie Shan, Carol
+          Xiaohui Song, Derrick S. Kearney, Lan Zhao and Amy Neuenschwander.
+          "Multidisciplinary Research Enabled by Real-time and Archival Remote Sensing
+          and High Performance Computing to Support Environmental Sustainability and
+          Disaster Mitigation." Al Ahzar University, Departments of Astronomy and
+          Meteorology, Cairo, Egypt, Nov. 4, 2006.
+
+\end{bibenum}
+
+\vspace{0.1in}
+
+\section{Conference Talks}
+
+\begin{bibenum}
+
+    \item Kearney, D. Supercharge your simulation tools with nanoHUB.org.
+        \emph{Nanoindentation 2015}, Urbana, Illinois, April 1--2, 2015. \\
+        \url{https://nanohub.org/groups/nanobio/nano_agenda_april_2015}
+%        \url{https://nanohub.org/groups/nanobio/nanoindentationworkshop}
+%        \url{https://nanohub.org/resources/22809}
+%       introduction to nanohub talk
+%       20 people, 30 minutes
+
+    \item Kearney, D. Design Patterns beyond the Page Object: An
+        investigation into the design patterns used while building
+        page objects. \emph{Selenium Conf '14}, Bangalore, India,
+        September 4--6, 2014. \\
+        \url{https://www.youtube.com/watch?v=AVrnBJDQeaI}
+%       describe 3 newly formalized design patterns, used within HUBcheck,
+%       that make Selenium based web page automation easier.
+%       250 people, 1 hour talk
+
+    \item Kearney, D. HUBcheck - Check the Hub. \emph{HUBbub 2011},
+        Indianapolis, Indiana, April 07--08, 2011. \\
+        \url{https://hubzero.org/resources/422}
+
+\end{bibenum}
+
+\halfblankline
+
+\section{Workshops and Teaching Experience}
+
+\begin{bibenum}
+
+    \item Kearney, D. Rappture Toolkit, Submit for Job Submission, and
+        PUQ for Uncertainty Quantification. \emph{HUBbub 2015},
+        Indianapolis, Indiana, September 13--16, 2015. \\
+        \url{https://hubzero.org/hubbub/2015/}
+%       1/2 day workshop showing off the Rappture Toolkit for building
+%       simulation tools, USC's Pegasus for job management on clusters,
+%       Submit for job submission and performing sweeps, and PUQ for
+%       Uncertainty Quantification.
+%       4 hours, 10 people
+
+    \item Kearney, D. Introduction to Workspaces and Simulation Tool
+        Development on nanoHUB.org. \emph{nanoHUB User Conference 2015},
+        West Lafayette, Indiana, August 31--September 1, 2015. \\
+        \url{https://nanohub.org/groups/conference}
+%        \url{https://nanohub.org/groups/conference/2015conference}
+%       3 hours, 3 presentations, 3 exercises
+%       what is a workspace
+%       intro to rappture
+%       uploading and publishing tools
+
+    \item Kearney, D. Software Bootcamp. \emph{NCN Software Bootcamp 2015},
+        West Lafayette, Indiana, June 1--3, 2015.
+%        \url{https://nanohub.org/groups/conference/2015conference}
+%       3 day workshop introducing surf students to nanoHUB, Rappture Toolkit
+%       and good software practices, 30 people
+
+    \item Kearney, D. Introduction to the Rappture Toolkit.
+        \emph{HUBbub 2014}, Indianapolis, Indiana, September 28--October 1, 2014. \\
+        \url{https://hubzero.org/resources/1216}
+%        \url{https://hubzero.org/hubbub/2014/}
+%       1 day (2 half day) workshop introducing HUBbub participants to Online
+%       simulation, HUBzero Workspaces, and Rappture Toolkit.
+%       10 people
+
+    \item Kearney, D. Software Bootcamp.
+        \emph{NCN Software Bootcamp (UC Merced Edition)}, Merced, California,
+        July 14--18, 2014.
+%        \url{https://hubzero.org/hubbub/2014/}
+%       5 half day workshop introducing UC Merced students to building and
+%       using online simulation tools on nanoHUB.org, working with them to
+%       learn programming and how it can be applied to their research.
+%       10 people
+
+\end{bibenum}
+
+\halfblankline
+
+\section{Service}
+
+    \href{http://bit.ly/caribsa/}{\textbf{Caribbean Student Association (CARIBSA)}}, Purdue University
+    \begin{outerlist}
+
+        \item[] Adviser %
+                \hfill \textbf{August 2005 to Present}
+
+
+                Guide students through the acquisition of grants and
+                resources to further the club's mission of educating
+                the community about the people, culture, and
+                contributions of islands and nations in the Caribbean
+                region. \\
+
+                Recent club activities include:
+                \begin{innerlist}
+                    \item Bob Marley Birthday Bash % \hfill Feb 2016
+                    \item Homecoming Parade % \hfill Nov 2015
+                    \item Lafayette Transitional Housing Center Dinner % \hfill Fall 2010
+                    \item Help For Haiti Earthquake Relief Fundraisers  % \hfill Spring 2010
+                    % \item Lyn Treece Boys and Girls Club Carnival % \hfill Spring 2007
+                    % \item Hanna Community Center Homework Assistance Program % \hfill Fall 2007
+                    % \item Hanna Community Center Carnival % \hfill Fall 2006
+                \end{innerlist}
+
+                \url{bit.ly/caribsa} \\
+                \url{bit.ly/caribsa-facebook}
+
+    \end{outerlist}
+
+    \halfblankline
+
+    \href{http://www.lthc.net/}{\textbf{Lafayette Transitional Housing Center}}
+    \begin{outerlist}
+
+        \item[] Volunteer Chef %
+                \hfill \textbf{November 2012 to April 2015}
+
+                \begin{innerlist}
+                    \item Developed menus, sourced food, and cooked monthly dinners for 15 to 60 clients
+                \end{innerlist}
+
+    \end{outerlist}
+
+    \halfblankline
+
+    \textbf{Boy Scout Troop 336}, West Lafayette, Indiana
+    \begin{outerlist}
+
+        \item[] Committee Chair %
+                \hfill \textbf{February 2012 to December 2013}
+
+                \begin{innerlist}
+                    \item Helped launch and charter a new troop, assisting one scout to
+                          reach the rank of Eagle Scout and nearly all other scouts to reach
+                          the rank of First Class.
+                    \item Built a team, from parents and members of the Purdue University
+                          College of Technology, to provide enrichment for the troop through
+                          grant funded activities that supported scout rank advancement.
+                    \item Conducted monthly information sessions and
+                          collaborated with parents to support the external
+                          needs of the troop like transportation to out of
+                          town destinations, camping permits, and equipment
+                          acquisition.
+                    \item Worked with scouts to implement a leadership team
+                          responsible for organizing trip meals, managing troop equipment
+                          after trips, teaching incomming scouts new skills, and upholding
+                          Scouting virtues.
+                \end{innerlist}
+
+    \end{outerlist}
+
+    \halfblankline
+
+    \href{http://www.purdue.edu/mep/}{\textbf{Minority Engineering Program (MEP)}}, Purdue University
+    \begin{outerlist}
+
+        \item[] Summer Programs Volunteer %
+                \hfill \textbf{February 2005 to August 2008}
+
+                \begin{innerlist}
+                    \item Organized lab tours of Birck Nanotechnology
+                          and Bindley Bioscience Centers.
+                    \item Coordinated with the Network for Computational
+                          Nanotechnology and Discovery Park to produce
+                          the initial Birck Nanotechnology Center atrium
+                          exhibit.
+                    \item Developed and taught
+                          \textit{Top Down vs. Bottom Up: Intro to Photolithography},
+                          a nanotechnology based shortcourse to suppliment
+                          the experience of \nth{6}--\nth{10} grade MEP
+                          summer program students.
+                \end{innerlist}
+
+    \end{outerlist}
+
+
+\halfblankline
+
+
+\section{Awards}
+%
+    \begin{innerlist}
+        \item Motorola/Purdue Electrical and Computer Engineering Scholarship, 2003
+        \item Minority Engineering Excellence Scholarship, 2002
+        \item General Motors Academic Excellence Scholarship, 2001
+        \item Lockheed-Martin Academic Excellence Scholarship, 2000
+        \item Purdue University Black Caucus Award, 2000
+        \item Eagle Scout, 1998
+    \end{innerlist}
+
+\halfblankline
+
+\section{Skills}
+%
+    Computer Programming:
+    %
+    \begin{innerlist}
+        \item C, \CC, FORTRAN, Perl, Python, Tcl/Tk,
+            UNIX shell, GNU Tools (Autotools, configure,
+            Make, gdb, gnu compilers and friends),
+            SQL, HTML
+    \end{innerlist}
+
+    \halfblankline
+
+    Numerical Analysis:
+    %
+    \begin{innerlist}
+        \item \Matlab, Octave, R
+    \end{innerlist}
+
+    \halfblankline
+
+    Version Control and Software Configuration Management:
+    %
+    \begin{innerlist}
+        \item Git, Subversion
+    \end{innerlist}
+
+    \halfblankline
+
+    Operating Systems:
+    %
+    \begin{innerlist}
+        \item Debian Linux, Ubuntu
+    \end{innerlist}
+
+\halfblankline
+
+\section{More Information}
+
+    Auxiliary documents and references available upon request.
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
