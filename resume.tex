@@ -232,7 +232,7 @@
 %
 % the picture will be flush right across from the name. For this example
 % to work, make sure the extra set of curly braces is included. Also
-% makes ure that \usepackage{graphicx} is somewhere in the preamble.
+% makes sure that \usepackage{graphicx} is somewhere in the preamble.
 \newcommand{\makeheading}[2][]%
         {\hspace*{-\marginparsep minus \marginparwidth}%
          \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
@@ -371,7 +371,8 @@
 
 \begin{document}
 \thispagestyle{plain}
-\makeheading[\emph{}]{Derrick Kearney}
+%\makeheading[anbochedsk@gmail.com | github.com/codedsk]{Derrick Kearney}
+\makeheading[]{Derrick Kearney}
 
 \section{Contact Information}
 
@@ -385,7 +386,7 @@
 %             (adjust it to your liking; default is 1.85in).
 %         \spacewidth is width of area between left and right boxes.
 %
-\newlength{\rcollength}\setlength{\rcollength}{2.0in}%
+\newlength{\rcollength}\setlength{\rcollength}{2.2in}%
 \newlength{\spacewidth}\setlength{\spacewidth}{20pt}
 %
 \begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
@@ -394,42 +395,191 @@
 \parbox{\textwidth-\rcollength-\spacewidth}{%
 IT@P Research Computing \\
 Purdue University \\
-West Lafayette, IN. 47906}
+West Lafayette, IN 47907}
 
 &
 % Uncomment to add a vertical bar in middle of contact information
 %{\vrule width 0.5pt}
-%\parbox[m][5\baselineskip]{\spacewidth}{} &
+\parbox[m][5\baselineskip]{\spacewidth}{} &
 
 % Non-snail-mail contact information
 \parbox{\rcollength}{%
 \emph{E-mail:} \email{anbochedsk@gmail.com}\\
-\emph{GitHub:} \href{https://github.com/codedsk}{github.com/codedsk}}
+\emph{GitHub:} \href{https://github.com/codedsk}{https://github.com/codedsk}\\
+\emph{Phone:} +1 765 532 6817}
 
 \end{tabular}
 
 
-\section{Professional Experience}
+\section{Interests}
+% add something about wanting to learn new technologies
 
-    Experienced in Linux based scientific software development.
-    Interested in working with mobile operating systems and developing
-    C/\CC, Python, and Rust libraries, while evangelizing
-    about the benefits of software automation and open source technologies.
+    Experienced in community oriented, open source, Linux based, scientific
+    software library and toolkit development. Interested in building software
+    that impacts mobile and multicore platforms at the operating system and
+    ecosystem levels, while evangelizing about the benefits of testing,
+    automation, and open source technologies.
 
-    \begin{outerlist}
 
-        \item[] \textit{Software Engineer},
+\section{Professional Contributions}
+
+% 1. help drive rust adoption
+% 2. work write rust language, tools, code
+% 3. work on distributed team from around the world
+% 4. work on open source code
+% 5. help others in the community.
+
+
+        \textit{Software Engineer},
                 \href{http://www.purdue.edu/}{Purdue University} %
                 \hfill February 2005 - Present \\
-                Developer for \HUBZEROPLATFORM
+                Developer and a primary simulation tools contact for the
+                \HUBZEROPLATFORM, \url{https://hubzero.org}, an open source
+                platform for creating dynamic websites that support scientific
+                research and educational activities with over 400,000
+                registered users and over a million visitors per year.
 
-        \item[] \textit{Associate Programmer},
-                \href{http://www.convergys.com/}{Convergys Corporation} %
-                \hfill January 2004 - January 2005 \\
-                Developer for Mediation Manager, mobile phone billing and
-                rating software.
+        \begin{innerlist}
 
-    \end{outerlist}
+% 1. help drive adoption
+% 4. open source
+% 5. help community
+            \item Engaged users and open source community members to help
+                increase adoption of both the HUBzero Platform and Rappture
+                Toolkit, implement new features, develop automated testing
+                strategies, and fix bugs. Resolved over 400 community
+                interactions in our internal support ticket system.
+
+% 2. write language, tools, code
+% 4. open source
+%            \item Developer for the
+%                \RAPPTURE, an open
+%                source software library designed to help scientists rapidly
+%                assemble and deploy graphical user interfaces for their
+%                simulation codes. Contributed to several of the core Tcl/Tk
+%                widgets and built language bindings for C, \CC, FORTRAN,
+%                \Matlab, Octave, Perl, Python, and R. \\
+
+             \item Designed several core Tcl/Tk widgets for the \RAPPTURE, an
+                open source software library designed to help scientists rapidly
+                assemble and deploy graphical user interfaces for their simulation
+                codes. Built language bindings for C, \CC, FORTRAN, \Matlab,
+                Octave, Perl, Python, and R. \\
+                \url{http://rappture.org}
+
+
+% 3. distributed teams
+% 5. help community
+%            \item Collaborated with dozens of research groups to build scientific
+%                application that are freely available for people around the world
+%                to use and learn from. 
+%            \item Collaborated to build freely available, scientific applications
+%                with dozens of research groups affiliated with the
+            \item Collaborated with dozens of research groups affiliated with the
+                \href{https://nanohub.org/groups/ncn}{Network for Computational Nanotechnology},
+                \href{https://engineering.purdue.edu/ChE/People/ptProfile?id=12436}{Purdue},
+                \href{http://nanobionode.illinois.edu}{UIUC},
+                \href{http://pegasus.isi.edu}{UCSD},
+                \href{http://telab.vuse.vanderbilt.edu/greg.walker}{Vanderbilt},
+                \href{http://www.engr.siu.edu/staff1/ahmed/mywebpage/ahmed.html}{Southern Illinois},
+                \href{http://faculty1.ucmerced.edu/amartini}{UC Merced},
+                \href{http://cbiit.nci.nih.gov/ncip}{NIH},
+                and other institutions around the world to build freely available,
+                scientific applications including:
+%                \hfill Recent applications include:
+                \begin{innerlist}
+% 1. help drive adoption
+                    \item[] SolarPV
+                        \begin{innerlist}
+                            \item[] Simulates electricity demand in residential
+                              communities with solar photovoltaic (PV) systems.
+                              Worked with a Chemical Engineering team to adapt
+                              the original proprietary model to run on the HUBzero
+                              Platform, in an environment where students could
+                              easily create and upload their own data profiles
+                              for use by the model.
+                            \item[] Coded in Java, MySQL, Python, Bash
+                            \item[] \url{https://nanohub.org/resources/solarpv} \hfill\doi{10.4231/D3BV79W4T}
+                        \end{innerlist}
+                    \item[] ParticleVE
+                        \begin{innerlist}
+                            \item[] Track and estimate particle velocities
+                              using video from the 2010 Deepwater Horizon
+                              oil spill in the Gulf of Mexico. Worked with
+                              a microfluidics and particle image velocimetry
+                              expert to build an open source application which
+                              uses video from the oil spill and algebra to
+                              assists users in estimating the amount of oil
+                              that was released into the Gulf after the
+                              drilling rig explosion.
+                            \item[] Coded in Tcl/Tk, C (libav/ffmpeg), HTML
+                            \item[] \url{https://nanohub.org/resources/particleve} \hfill\doi{10.4231/D35D8NF30}
+                        \end{innerlist}
+                    \item[] NanoFET
+                        \begin{innerlist}
+                            \item[] Simulates the effects
+                              of downscaling conventional CMOS devices,
+                              uncovering the challenges of working on the
+                              ever-shrinking nanoelectronics in devices.
+                              Worked with a small team of Electrical Engineering
+                              postdocs to parallelize the code using MPI,
+                              set it up to run on TeraGrid supercomputers,
+                              and deployed it on
+                              \href{https://nanohub.org}{nanoHUB.org}
+                              as a publicly available community software
+                              tool.
+                            \item[] Coded in FORTRAN
+                            \item[] \url{https://nanohub.org/resources/nanofet} \hfill\doi{10.4231/D3X921K5T}
+                        \end{innerlist}
+                \end{innerlist}
+
+% 4. open source code
+            \item Created \href{https://github.com/codedsk/hubcheck}{HUBcheck},
+                an open source Python library used to build automation scripts
+                and user level tests for HUBzero based websites and workspace
+                environments.  Built on top of
+                \href{http://www.seleniumhq.org/projects/webdriver}{Selenium WebDriver}
+                and \href{https://www.mozilla.org/en-US/firefox/new}{Firefox}
+                to provide web browser automation,
+                \href{http://www.paramiko.org}{Paramiko} to provide SSH automation,
+                \href{https://bmp.lightbody.net}{BrowserMob Proxy},
+                \href{https://www.ffmpeg.org}{FFmpeg},
+                \href{http://www.karlrunge.com/x11vnc/}{VNC},
+                and a bunch of X server utilities. With HUBcheck, developers can
+                simulate a user's website experience using abstractions of HUB
+                web pages and interact with the virtualized, Debian GNU/Linux
+                based simulation tool environment, all from a single script.\\
+                \url{https://github.com/codedsk/hubcheck}
+
+% 1. help drive adoption
+% 5. help community
+            \item Mentored students participating in the Summer
+                Undergraduate Research Fellowship (SURF) program. Worked
+                with other faculty, staff and graduate mentors to introduce
+                students to nanotechnology research, software development
+                best practices, the HUBzero Platform, and Rappture Toolkit.\\
+                \url{http://www.purdue.edu/surf}
+
+        \end{innerlist}
+
+
+%\section{Contributions}
+%
+%    \begin{innerlist}
+%
+%        \item Collaborated on the development of scientific applications for
+%            research groups affiliated with the \NCN\space including
+%            \href{http://dx.doi.org/10.4231/D3BV79W4T}{SolarPV} for
+%            simulating solar photovoltaic systems,
+%            \href{http://dx.doi.org/10.4231/D35D8NF30}{ParticleVE} for
+%            estimating particle velocities using video from the 2010 Deepwater
+%            Horizon oil spill, and
+%            \href{http://dx.doi.org/10254/nanohub-r1090.5}{NanoFET} for
+%            performing parallelized simulations of ballistic transport in
+%            2D MOSFET devices.
+%
+%    \end{innerlist}
+
 
 
 \section{Education}
@@ -453,37 +603,6 @@ West Lafayette, IN. 47906}
     \end{outerlist}
 
 
-\section{Technical Experience}
-
-    \begin{innerlist}
-
-        \item Contributed to several \TCLTK\space widgets and developed
-            C, \CC, FORTRAN, \\
-            \Matlab, Octave, Perl, Python, and R
-            language bindings for the \RAPPTURE.
-
-        \item Created \href{https://github.com/codedsk/hubcheck}{HUBcheck},
-            a Python based user level test automation library for \HUBZERO \\
-            based websites.
-
-        \item Built \href{https://mygeohub.org/groups/gabbs}{geospacial
-            analysis and mapping tools}, for the \RAPPTURE\space and \HUBZERO \\
-            Platform, that allow scientists to display, and end users
-            to manipulate, large data sets through interactive maps.
-
-        \item Collaborated on the development of scientific applications for
-            research groups affiliated with the \NCN\space including
-            \href{http://dx.doi.org/10.4231/D3BV79W4T}{SolarPV} for
-            simulating solar photovoltaic systems,
-            \href{http://dx.doi.org/10.4231/D35D8NF30}{ParticleVE} for
-            estimating particle velocities using video from the 2010 Deepwater
-            Horizon oil spill, and
-            \href{http://dx.doi.org/10254/nanohub-r1090.5}{NanoFET} for
-            performing parallelized simulations of ballistic transport in
-            2D MOSFET devices.
-
-    \end{innerlist}
-
 
 \section{Publications, Proceedings, Talks}
 
@@ -498,9 +617,9 @@ West Lafayette, IN. 47906}
           \href{https://nanohub.org/groups/nanobio/nano_agenda_april_2015}
           {deploying scientific simulation codes on the web}.
         \item Led 5 \href{https://nanohub.org/courses/tools/hubbub2015}
-          {interactive workshops with lectures and assignments}, teaching
-          people software best practices and how to build and deploy
-          scientific simulation software on the \HUBZERO\space Platform.
+          {interactive workshops, with lectures and assignments}, teaching
+          software best practices and methods for building and deploying
+          scientific simulation tools on the \HUBZERO\space Platform.
     \end{innerlist}
 
 
@@ -511,11 +630,14 @@ West Lafayette, IN. 47906}
         \item 2005-Present,
           \href{http://bit.ly/caribsa/}{Purdue Caribbean Student Association},
           Advisor
+        \item 2007-Present,
+          \href{http://www.meetup.com/Greater-Lafayette-Open-Source-Symposium}{Greater Lafayette Open Source Symposium/PurduePM},
+          Presenter
         \item 2012-15,
           \href{http://www.lthc.net/}{Lafayette Transitional Housing Center},
           Volunteer Chef
         \item 2012-13,
-          Boy Scout Troop 336, West Lafayette, Indiana,
+          Boy Scout Troop 336, West Lafayette, IN,
           Committee Chair
         \item 2005-08,
           \href{http://www.purdue.edu/mep/}{Purdue Minority Engineering Program},
@@ -524,12 +646,16 @@ West Lafayette, IN. 47906}
 
 
 
-\section{Skills}
+\section{Awards}
 %
-    C, \CC, FORTRAN, Perl, Python, \TCLTK, UNIX shell,
-    GNU Tools (Autotools, configure, Make, gdb, compilers and friends),
-    Valgrind, SQL, HTML, \Matlab, GNU Octave, R,
-    Git, \SVN, Debian GNU/Linux, IRC, SSH, Eagle Scout.
+    Eagle Scout
+
+%\section{Skills}
+%%
+%    C, \CC, FORTRAN, Perl, Python, \TCLTK, UNIX shell,
+%    GNU Tools (Autotools, configure, Make, gdb, compilers and friends),
+%    Valgrind, SQL, HTML, \Matlab, GNU Octave, R,
+%    Git, \SVN, Debian GNU/Linux, IRC, SSH, Eagle Scout.
 
 
 \section{More Information}
