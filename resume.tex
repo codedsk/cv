@@ -74,7 +74,8 @@
             %includefoot, % Uncomment to put page number above margin
             marginparwidth=1.2in,     % Length of section titles
             marginparsep=.05in,       % Space between titles and text
-            margin=1in,               % 1 inch margins
+            %margin=1in,               % 1 inch margins
+            margin=0.85in,               % 1 inch margins
             includemp]{geometry}
 
 %% Use these lines for A4-sized paper
@@ -162,7 +163,7 @@
 %%%% PAGES 2--9 NUMBERING:
 %% These two lines put page number in upper-right corner of pages 2--end
 \rhead{Kearney, p.~\arabic{page} of \protect\pageref*{LastPage}}   % +LP
-%\rhead{Pavlic, p.~\arabic{page}}                                 % -LP
+%\rhead{Kearney, p.~\arabic{page}}                                 % -LP
 
 %% These lines put page number in bottom (center) of pages 2--end
 %\lfoot{\hspace{\footpageshift}%
@@ -203,6 +204,10 @@
             %draft
             }
 
+% allow user to include graphics like qrcodes
+\usepackage{graphicx}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -237,6 +242,13 @@
         {\hspace*{-\marginparsep minus \marginparwidth}%
          \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
              {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+\newcommand{\makeheadingqr}[3][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1 \includegraphics[scale=1]{#3}}\\[-0.15\baselineskip]%
                  \rule{\columnwidth}{1pt}%
          \end{minipage}}
 
@@ -361,6 +373,7 @@
 \newcommand\INCRTCLTK{[incr\space\nolinebreak Tcl/Tk]}
 \newcommand\TCLTK{Tcl/Tk}
 \newcommand\HUBZERO{\href{https://hubzero.org}{HUBzero}}
+\newcommand\HUBZEROREGISTERED{\href{https://hubzero.org}{HUBzero\textsuperscript{\textregistered}}}
 \newcommand\HUBZEROPLATFORM{\href{https://hubzero.org}{HUBzero Platform for Scientific Collaboration}}
 \newcommand\RAPPTURE{\href{http://rappture.org}{Rappture Toolkit}}
 \newcommand\NCN{\href{https://nanohub.org/groups/ncn}{Network for Computational Nanotechnology}}
@@ -371,8 +384,7 @@
 
 \begin{document}
 \thispagestyle{plain}
-%\makeheading[anbochedsk@gmail.com | github.com/codedsk]{Derrick Kearney}
-\makeheading[]{Derrick Kearney}
+\makeheadingqr[]{Derrick Kearney}{codedskgithub.pdf}
 
 \section{Contact Information}
 
@@ -390,38 +402,38 @@
 \newlength{\spacewidth}\setlength{\spacewidth}{20pt}
 %
 \begin{tabular}[t]{@{}p{\textwidth-\rcollength-\spacewidth}@{}p{\spacewidth}@{}p{\rcollength}}%
-
 % Address box
 \parbox{\textwidth-\rcollength-\spacewidth}{%
-IT@P Research Computing \\
-Purdue University \\
-West Lafayette, IN 47907}
+
+Lafayette, IN \\
+United States of America}
 
 &
+
 % Uncomment to add a vertical bar in middle of contact information
 %{\vrule width 0.5pt}
-\parbox[m][5\baselineskip]{\spacewidth}{} &
+\parbox[m][2\baselineskip]{\spacewidth}{}
+
+&
 
 % Non-snail-mail contact information
 \parbox{\rcollength}{%
 \emph{E-mail:} \email{anbochedsk@gmail.com}\\
-\emph{GitHub:} \href{https://github.com/codedsk}{https://github.com/codedsk}\\
-\emph{Phone:} +1 765 532 6817}
+\emph{GitHub:} \url{https://github.com/codedsk}}
 
 \end{tabular}
 
 
 \section{Interests}
-% add something about wanting to learn new technologies
 
-    Experienced in community oriented, open source, Linux based, scientific
-    software library and toolkit development. Interested in building software
-    that impacts mobile and multicore platforms at the operating system and
-    ecosystem levels, while evangelizing about the benefits of testing,
-    automation, and open source technologies.
+    Experienced in community oriented, open source, scientific software library
+    and toolkit development. A spry learner interested in leveraging new
+    technologies to create software that impacts mobile and multicore platforms
+    at the operating system and ecosystem levels, while evangelizing about the
+    benefits of testing, automation, and open source technologies.
 
 
-\section{Professional Contributions}
+\section{Contributions}
 
 % 1. help drive rust adoption
 % 2. work write rust language, tools, code
@@ -430,52 +442,50 @@ West Lafayette, IN 47907}
 % 5. help others in the community.
 
 
-        \textit{Software Engineer},
-                \href{http://www.purdue.edu/}{Purdue University} %
-                \hfill February 2005 - Present \\
-                Developer and a primary simulation tools contact for the
-                \HUBZEROPLATFORM, \url{https://hubzero.org}, an open source
-                platform for creating dynamic websites that support scientific
-                research and educational activities with over 400,000
-                registered users and over a million visitors per year.
+        Developer and primary simulation tools contact for
+        \HUBZEROREGISTERED, \url{https://hubzero.org}, an open source
+        platform for creating dynamic websites that support scientific
+        research and educational activities with over 400,000
+        registered users and over a million visitors per year.
+
+        \halfblankline
 
         \begin{innerlist}
 
 % 1. help drive adoption
 % 4. open source
 % 5. help community
-            \item Engaged users and open source community members to help
+            \item \textbf{Engaged users and open source community members} to help
                 increase adoption of both the HUBzero Platform and Rappture
                 Toolkit, implement new features, develop automated testing
                 strategies, and fix bugs. Resolved over 400 community
                 interactions in our internal support ticket system.
 
+            \halfblankline
+
 % 2. write language, tools, code
 % 4. open source
-%            \item Developer for the
-%                \RAPPTURE, an open
-%                source software library designed to help scientists rapidly
-%                assemble and deploy graphical user interfaces for their
-%                simulation codes. Contributed to several of the core Tcl/Tk
-%                widgets and built language bindings for C, \CC, FORTRAN,
-%                \Matlab, Octave, Perl, Python, and R. \\
+%             \item Designed several core Tcl/Tk widgets for the \RAPPTURE, an
+%                open source software library designed to help scientists rapidly
+%                assemble and deploy graphical user interfaces for their simulation
+%                codes. Built language bindings for C, \CC, FORTRAN, \Matlab,
+%                Octave, Perl, Python, and R. \\
+%                \url{http://rappture.org}
 
-             \item Designed several core Tcl/Tk widgets for the \RAPPTURE, an
-                open source software library designed to help scientists rapidly
-                assemble and deploy graphical user interfaces for their simulation
-                codes. Built language bindings for C, \CC, FORTRAN, \Matlab,
-                Octave, Perl, Python, and R. \\
+             \item \textbf{Designed language bindings and several core Tcl/Tk widgets}
+                for the \RAPPTURE, an open source software library designed to help
+                scientists rapidly assemble and deploy graphical user interfaces for
+                their simulation codes. Responsibilities included writing and maintaining
+                bindings written in C, \CC, FORTRAN, \Matlab, Octave, Perl, Python,
+                and R. \\
                 \url{http://rappture.org}
 
 
+            \halfblankline
+
 % 3. distributed teams
 % 5. help community
-%            \item Collaborated with dozens of research groups to build scientific
-%                application that are freely available for people around the world
-%                to use and learn from. 
-%            \item Collaborated to build freely available, scientific applications
-%                with dozens of research groups affiliated with the
-            \item Collaborated with dozens of research groups affiliated with the
+            \item \textbf{Collaborated with dozens of research groups} affiliated with the
                 \href{https://nanohub.org/groups/ncn}{Network for Computational Nanotechnology},
                 \href{https://engineering.purdue.edu/ChE/People/ptProfile?id=12436}{Purdue},
                 \href{http://nanobionode.illinois.edu}{UIUC},
@@ -487,17 +497,16 @@ West Lafayette, IN 47907}
                 and other institutions around the world to build freely available,
                 scientific applications including:
 %                \hfill Recent applications include:
-                \begin{innerlist}
+                \begin{outerlist}
 % 1. help drive adoption
                     \item[] SolarPV
                         \begin{innerlist}
                             \item[] Simulates electricity demand in residential
                               communities with solar photovoltaic (PV) systems.
                               Worked with a Chemical Engineering team to adapt
-                              the original proprietary model to run on the HUBzero
-                              Platform, in an environment where students could
-                              easily create and upload their own data profiles
-                              for use by the model.
+                              the a proprietary model to run on the HUBzero
+                              Platform, where students could easily create,
+                              upload, and simulate using their own data profiles.
                             \item[] Coded in Java, MySQL, Python, Bash
                             \item[] \url{https://nanohub.org/resources/solarpv} \hfill\doi{10.4231/D3BV79W4T}
                         \end{innerlist}
@@ -531,12 +540,14 @@ West Lafayette, IN 47907}
                             \item[] Coded in FORTRAN
                             \item[] \url{https://nanohub.org/resources/nanofet} \hfill\doi{10.4231/D3X921K5T}
                         \end{innerlist}
-                \end{innerlist}
+                \end{outerlist}
+
+            \halfblankline
 
 % 4. open source code
-            \item Created \href{https://github.com/codedsk/hubcheck}{HUBcheck},
-                an open source Python library used to build automation scripts
-                and user level tests for HUBzero based websites and workspace
+            \item \textbf{Created \href{https://github.com/codedsk/hubcheck}{HUBcheck},
+                an open source Python library} used to build automation scripts
+                and user level tests for HUBzero based websites and simulation tool
                 environments.  Built on top of
                 \href{http://www.seleniumhq.org/projects/webdriver}{Selenium WebDriver}
                 and \href{https://www.mozilla.org/en-US/firefox/new}{Firefox}
@@ -545,17 +556,20 @@ West Lafayette, IN 47907}
                 \href{https://bmp.lightbody.net}{BrowserMob Proxy},
                 \href{https://www.ffmpeg.org}{FFmpeg},
                 \href{http://www.karlrunge.com/x11vnc/}{VNC},
-                and a bunch of X server utilities. With HUBcheck, developers can
+                and X server utilities. With HUBcheck, developers can
                 simulate a user's website experience using abstractions of HUB
                 web pages and interact with the virtualized, Debian GNU/Linux
                 based simulation tool environment, all from a single script.\\
                 \url{https://github.com/codedsk/hubcheck}
 
+            \halfblankline
+
 % 1. help drive adoption
 % 5. help community
-            \item Mentored students participating in the Summer
-                Undergraduate Research Fellowship (SURF) program. Worked
-                with other faculty, staff and graduate mentors to introduce
+            \item \textbf{Cultivated next generation researchers through mentorship and
+                teaching} of students participating in Purdue University's Summer
+                Undergraduate Research Fellowship (SURF) program. Organized workshops,
+                held open office hours, and worked with other faculty and staff to introduce
                 students to nanotechnology research, software development
                 best practices, the HUBzero Platform, and Rappture Toolkit.\\
                 \url{http://www.purdue.edu/surf}
@@ -563,104 +577,91 @@ West Lafayette, IN 47907}
         \end{innerlist}
 
 
-%\section{Contributions}
-%
-%    \begin{innerlist}
-%
-%        \item Collaborated on the development of scientific applications for
-%            research groups affiliated with the \NCN\space including
-%            \href{http://dx.doi.org/10.4231/D3BV79W4T}{SolarPV} for
-%            simulating solar photovoltaic systems,
-%            \href{http://dx.doi.org/10.4231/D35D8NF30}{ParticleVE} for
-%            estimating particle velocities using video from the 2010 Deepwater
-%            Horizon oil spill, and
-%            \href{http://dx.doi.org/10254/nanohub-r1090.5}{NanoFET} for
-%            performing parallelized simulations of ballistic transport in
-%            2D MOSFET devices.
-%
-%    \end{innerlist}
+\section{Professional History}
 
+        \textit{Software Engineer},
+                \href{http://www.purdue.edu/}{Purdue University} %
+                \hfill \textbf{2005 - Present} \\
+                Developer for \HUBZEROPLATFORM
+
+        \halfblankline
+
+        \textit{Associate Programmer},
+                \href{http://www.convergys.com/}{Convergys Corporation} %
+                \hfill \textbf{2004 - 2005} \\
+                Developer for Mediation Manager, mobile phone billing and
+                rating software.
 
 
 \section{Education}
 
-    \href{http://www.purdue.edu/}{Purdue University},
-    West Lafayette, IN
-    \begin{outerlist}
-
-        \item[] M.S.,
+      Purdue University \\
+                \textbf{Master of Science (MS)},
                 \href{https://engineering.purdue.edu/ECE}
-                     {Electrical and Computer Engineering}, May 2015 \\
+                     {Electrical and Computer Engineering}
+                \hfill \textbf{May 2015} \\
                 Thesis Topic:
                   \href{http://docs.lib.purdue.edu/dissertations/AAI1597870/}
                     {\emph{Automated testing in multimodal systems}}
 
-        \item[] B.S.,
+\halfblankline
+
+      Purdue University \\
+                \textbf{Bachelor or Science (BS)},
                 \href{https://engineering.purdue.edu/ECE}
-                     {Electrical and Computer Engineering}, Dec 2003 \\
+                     {Electrical and Computer Engineering}
+                \hfill \textbf{Dec 2003} \\
                 Computer Engineering specialization (emphasis on software systems)
 
-    \end{outerlist}
-
-
+\halfblankline
 
 \section{Publications, Proceedings, Talks}
 
-    \begin{innerlist}
-        \item Co-authored 8 refereed journal publications and conference
-          proceedings with topics ranging from
+    \begin{lonelist}
+        \item \textbf{Co-authored 8 refereed journal publications and conference
+          proceedings} with topics ranging from
           \href{http://dx.doi.org/10.1002/cpe.3257}{building web-based
           scientific workflows} to Remote Sensing tools and applications.
-        \item Talked at 3 conferences about
+        \item \textbf{Presented at 3 conferences} about
           \href{https://www.youtube.com/watch?v=AVrnBJDQeaI}{design
-          patterns for Selenium based automated testing} and
+          patterns for Selenium WebDriver based automated website testing} and
           \href{https://nanohub.org/groups/nanobio/nano_agenda_april_2015}
           {deploying scientific simulation codes on the web}.
-        \item Led 5 \href{https://nanohub.org/courses/tools/hubbub2015}
-          {interactive workshops, with lectures and assignments}, teaching
+        \item \textbf{Led 5 \href{https://nanohub.org/courses/tools/hubbub2015}
+          {interactive workshops}}, with lectures and assignments, teaching
           software best practices and methods for building and deploying
           scientific simulation tools on the \HUBZERO\space Platform.
-    \end{innerlist}
+    \end{lonelist}
 
-
+\halfblankline
 
 \section{Service}
 
-    \begin{innerlist}
-        \item 2005-Present,
-          \href{http://bit.ly/caribsa/}{Purdue Caribbean Student Association},
-          Advisor
-        \item 2007-Present,
-          \href{http://www.meetup.com/Greater-Lafayette-Open-Source-Symposium}{Greater Lafayette Open Source Symposium/PurduePM},
-          Presenter
-        \item 2012-15,
-          \href{http://www.lthc.net/}{Lafayette Transitional Housing Center},
-          Volunteer Chef
-        \item 2012-13,
-          Boy Scout Troop 336, West Lafayette, IN,
-          Committee Chair
-        \item 2005-08,
-          \href{http://www.purdue.edu/mep/}{Purdue Minority Engineering Program},
-          Summer Programs Volunteer
-    \end{innerlist}
-
+    \href{http://bit.ly/caribsa/}{Purdue Caribbean Student Association},
+      Advisor
+      \hfill \textbf{2005 - Present} \\
+    \href{http://www.meetup.com/Greater-Lafayette-Open-Source-Symposium}{Greater Lafayette Open Source Symposium/PurduePM},
+      Presenter
+      \hfill \textbf{2007 - Present} \\
+    \href{http://www.lthc.net/}{Lafayette Transitional Housing Center},
+      Volunteer Chef
+      \hfill \textbf{2012 - 2015} \\
+    Boy Scout Troop 336, West Lafayette, IN,
+      Committee Chair
+      \hfill \textbf{2012 - 2013} \\
+    \href{http://www.purdue.edu/mep/}{Purdue Minority Engineering Program},
+      Summer Programs Volunteer
+      \hfill \textbf{2005 - 2008}
 
 
 \section{Awards}
 %
     Eagle Scout
 
-%\section{Skills}
-%%
-%    C, \CC, FORTRAN, Perl, Python, \TCLTK, UNIX shell,
-%    GNU Tools (Autotools, configure, Make, gdb, compilers and friends),
-%    Valgrind, SQL, HTML, \Matlab, GNU Octave, R,
-%    Git, \SVN, Debian GNU/Linux, IRC, SSH, Eagle Scout.
-
 
 \section{More Information}
 %
-    Auxiliary documents and references available upon request.
+    Learn more at \textbf{\url{http://bit.ly/codedsk-cv}}.\\
 
 \end{document}
 
