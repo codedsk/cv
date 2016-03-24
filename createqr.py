@@ -17,9 +17,21 @@ command_parser.add_argument(
     default="qrcode.svg",
     type=str)
 command_parser.add_argument(
+    '--infile',
+    help='treat the url input as the name of the file to read qrcode contents from',
+    action="store_true",
+    dest="isfile",
+    default=False)
+command_parser.add_argument(
     'url',
     help='url to encode in the qr code',
     action="store")
 cl_options = command_parser.parse_args()
 
-url = pyqrcode.create(cl_options.url).svg(cl_options.outfile,scale=cl_options.size)
+if cl_options.isfile is True:
+    with open(cl_options.url,'r') as f:
+        data = f.read()
+else:
+    data = cl_options.url
+
+url = pyqrcode.create(data).svg(cl_options.outfile,scale=cl_options.size)
