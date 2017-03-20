@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Derrick Kearney
+ADR:IT@P Research Computing;Purdue University;155 South Grant St.;West Lafayette;Indiana;47907;United States of America
+TEL;TYPE=VOICE:+17654943659
+EMAIL;TYPE=WORK:dsk@purdue.edu
+URL;TYPE=WORK:https://hubzero.org
+URL;TYPE=HOME:https://codedsk.github.io
+URL;TYPE=HOME:https://github.com/codedsk
+END:VCARD
