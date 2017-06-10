@@ -1,6 +1,6 @@
 cv.pdf: cv.tex
 
-all: cv-pdf resume-pdf
+all: cv-pdf resume-pdf bio.pdf
 
 qrcodegithub.pdf: createqr.py
 	python createqr.py --outfile qrcodegithub.svg --size 1 http://bit.ly/codedsk
@@ -30,6 +30,11 @@ resume.pdf: qrcoderesume.pdf resume.tex
 resume-pdf: resume.pdf
 	cp resume.pdf dsk_resume_`date "+%Y%m%d"`.pdf
 
+bio.pdf: bio.tex
+	texi2pdf bio.tex
+	texi2pdf bio.tex
+	texi2pdf bio.tex
+
 #spellcheck:
 #	for i in *.tex; do aspell --mode=tex -c ${i}; done
 
@@ -37,10 +42,10 @@ clean:
 	rm -rf *.aux *.log *-converted-to.pdf \
            cv.bib resume.bib \
            cv.dvi resume.dvi \
-           cv.out resume.out
+           cv.out resume.out bio.out
 
 distclean: clean
-	rm -rf cv.pdf resume.pdf \
+	rm -rf cv.pdf resume.pdf bio.pdf \
            codedskgithub.svg codedskgithub.pdf \
            qrcodecv.svg qrcodecv.pdf \
            qrcoderesume.svg qrcoderesume.pdf
