@@ -1,3 +1,6 @@
+# may need to source /etc/profile.d/anaconda2.sh
+
+
 cv.pdf: cv.tex
 
 all: cv-pdf resume-pdf bio.pdf
@@ -46,6 +49,5 @@ clean:
 
 distclean: clean
 	rm -rf cv.pdf resume.pdf bio.pdf \
-           codedskgithub.svg codedskgithub.pdf \
            qrcodecv.svg qrcodecv.pdf \
            qrcoderesume.svg qrcoderesume.pdf
